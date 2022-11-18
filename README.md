@@ -1,3 +1,0 @@
-# processing_snake
-
-# aboba
