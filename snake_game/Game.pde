@@ -4,11 +4,12 @@ class Game {
   Food food;
   Score score;
   
+  boolean gameRunning = true;
   final int SIZE = 30;
+  int finalScore;
   
   Game() {
-    //food = new Food();
-    snake = new Snakes();
+    snake = new Snakes();  
     food = new Food();
     score = new Score();
     snake.size = SIZE;
@@ -20,12 +21,15 @@ class Game {
     snake.frame();
     food.exist();
     score.show();
-    if (snakeOnFood() == true) {
+    if (isSnakeOnFood() == true) {
       snake.eat();
-      food.reappear();
+      food.reappear(snake.snakeArray);
       score.increase();
     }
-    if (snake.selfCollision()) {
+    if (snake.isSelfCollided()) {
+      gameOver();
+    }
+    if (snake.isWallCollided()) {
       gameOver();
     }
   }
@@ -34,7 +38,7 @@ class Game {
     background(0);
   }
   
-  boolean snakeOnFood() {
+  boolean isSnakeOnFood() {
     if (snake.snakeArray.get(0)[0] == food.xPos && snake.snakeArray.get(0)[1] == food.yPos) {
       return true;
     }
@@ -42,6 +46,7 @@ class Game {
   }
   
   void gameOver() {
-    print("sos");
+    gameRunning = false;
+    finalScore = score.score;
   }
 }

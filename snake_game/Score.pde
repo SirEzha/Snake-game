@@ -1,6 +1,7 @@
 class Score {
   
   int score = 0;
+  int highscore = 0;
   
   void increase() {
     ++score;
@@ -8,6 +9,6 @@ class Score {
   
   void show() {
     textSize(20);
-    text("Score: " + score, 250, 30);
+    text("Score: " + score + "\n" + "Highscore is: " + highscore, 250, 30);
   }
 }

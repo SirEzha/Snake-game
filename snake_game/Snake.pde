@@ -25,7 +25,7 @@ class Snakes {
     moveHead();
     for (int i = 0; i < snakeArray.size(); ++i) {
       square(snakeArray.get(i)[0], snakeArray.get(i)[1], size);
-    }
+    } //<>//
   }
   
   void keyPressed() {
@@ -61,11 +61,18 @@ class Snakes {
     snakeArray.add(newPart);
   }
   
-  boolean selfCollision() {
+  boolean isSelfCollided() {
     for (int i = 1; i < snakeArray.size() - 1; ++i) {
       if (snakeArray.get(0)[0] == snakeArray.get(i)[0] && snakeArray.get(0)[1] == snakeArray.get(i)[1]) {
         return true;
       }
+    }
+    return false;
+  }
+  
+  boolean isWallCollided() {
+    if (snakeArray.get(0)[0] < 0 || snakeArray.get(0)[0] > 479 || snakeArray.get(0)[1] < 0 || snakeArray.get(0)[1] > 479) {
+      return true; 
     }
     return false;
   }
