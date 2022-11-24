@@ -11,7 +11,10 @@ class Food {
       if (snakeArray.get(i)[0] == xPos && snakeArray.get(i)[1] == yPos) {
         spawnInsideChecker = true;
       }
-    
+    }
+    if (spawnInsideChecker == true) {
+      spawnInsideChecker = false;
+      reappear(snakeArray); 
     }
   }
   

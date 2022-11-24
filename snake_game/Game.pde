@@ -6,7 +6,6 @@ class Game {
   
   boolean gameRunning = true;
   final int SIZE = 30;
-  int finalScore;
   
   Game() {
     snake = new Snakes();  
@@ -47,6 +46,5 @@ class Game {
   
   void gameOver() {
     gameRunning = false;
-    finalScore = score.score;
   }
 }
