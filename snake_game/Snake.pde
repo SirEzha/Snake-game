@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
-class Snakes {
+class Snake {
   
   int xSpeed = 30;
   int ySpeed = 0;
-  int size;
+  int SIZE;
   
   ArrayList<int[]> snakeArray = new ArrayList<int[]>();
   
-  Snakes() {
+  Snake() {
+    // initial snake
     int[] pos1 = {30, 30};
     int[] pos2 = {60, 30};
     int[] pos3 = {90, 30};
@@ -19,41 +20,39 @@ class Snakes {
   
   void frame() {
     keyPressed();
-    for (int i = snakeArray.size() - 1; i > 0; --i) {
-      moveTail(i);
-    }
-    moveHead();
+    moveSnake();
     for (int i = 0; i < snakeArray.size(); ++i) {
-      square(snakeArray.get(i)[0], snakeArray.get(i)[1], size);
-    } //<>//
+      square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+    }
   }
-  
+   //<>//
   void keyPressed() {
-    if (keyCode == UP && ySpeed != size) {
+    if (keyCode == UP && ySpeed != SIZE) {
       xSpeed = 0;
-      ySpeed = -size;
+      ySpeed = -SIZE;
     }
-    if (keyCode == DOWN && ySpeed != -size) {
+    if (keyCode == DOWN && ySpeed != -SIZE) {
       xSpeed = 0;
-      ySpeed = size;
+      ySpeed = SIZE;
     }
-    if (keyCode == LEFT && xSpeed != size) {
-      xSpeed = -size;
+    if (keyCode == LEFT && xSpeed != SIZE) {
+      xSpeed = -SIZE;
       ySpeed = 0;
     }
-    if (keyCode == RIGHT && xSpeed != -size) {
-      xSpeed = size;
+    if (keyCode == RIGHT && xSpeed != -SIZE) {
+      xSpeed = SIZE;
       ySpeed = 0;
     }
   }
   
-  void moveHead() {
+  void moveSnake() {
+    // move the tail
+    for (int i = snakeArray.size() - 1; i > 0; --i) {
+      snakeArray.set(i, snakeArray.get(i-1));
+    }
+    // move the head
     int[] updatedPos = {snakeArray.get(0)[0] + xSpeed, snakeArray.get(0)[1] + ySpeed};
     snakeArray.set(0, updatedPos);
-  }
-  
-  void moveTail(int posCurrent) {
-    snakeArray.set(posCurrent, snakeArray.get(posCurrent-1));
   }
   
   void eat() {

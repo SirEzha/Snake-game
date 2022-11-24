@@ -1,40 +1,36 @@
 class Game {
   
-  Snakes snake;
+  Snake snake;
   Food food;
   Score score;
   
-  boolean gameRunning = true;
+  boolean isRunning = true;
   final int SIZE = 30;
   
   Game() {
-    snake = new Snakes();  
+    snake = new Snake();  
     food = new Food();
     score = new Score();
-    snake.size = SIZE;
-    food.size = SIZE;
+    snake.SIZE = SIZE;
+    food.SIZE = SIZE;
   }
   
   void frame() {
-    bgDraw();
+    background(0);
     snake.frame();
-    food.exist();
-    score.show();
+    food.frame();
+    score.frame();
     if (isSnakeOnFood() == true) {
       snake.eat();
       food.reappear(snake.snakeArray);
-      score.increase();
+      score.scoreValue++;
     }
     if (snake.isSelfCollided()) {
-      gameOver();
+      lose();
     }
     if (snake.isWallCollided()) {
-      gameOver();
+      lose();
     }
-  }
-  
-  void bgDraw() {
-    background(0);
   }
   
   boolean isSnakeOnFood() {
@@ -44,7 +40,7 @@ class Game {
     return false;
   }
   
-  void gameOver() {
-    gameRunning = false;
+  void lose() {
+    isRunning = false;
   }
 }

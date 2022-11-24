@@ -1,14 +1,10 @@
 class Score {
   
-  int score = 0;
-  int highscore = 0;
+  int scoreValue = 0;
+  int highscoreValue = 0;
   
-  void increase() {
-    ++score;
-  }
-  
-  void show() {
-    textSize(20);
-    text("Score: " + score + "\n" + "Highscore is: " + highscore, 250, 30);
+  void frame() {
+    textSize(17);
+    text("Score: " + scoreValue + "\n" + "Highscore is: " + highscoreValue, 250, 30);
   }
 }
