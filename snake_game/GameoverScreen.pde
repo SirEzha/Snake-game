@@ -1,5 +1,6 @@
 class GameoverScreen {
   
+  // variables
   boolean isGameover = true;
   int scoreValue = 0;
   int highscoreValue = 0;
@@ -14,6 +15,7 @@ class GameoverScreen {
   void keyPressed() {
     if (key == 'r' || key == 'R') {
       isGameover = false;
+      // overwrite the variable because it is not automatically reset
       key = 'p';
     }
   }
