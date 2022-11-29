@@ -43,24 +43,32 @@ class Snake {
     arrayCopy(keyStorage, 1, keyStorage, 0, keyStorage.length-1);
     
     // turning the snake
-    if (currentKey == 'w' && ySpeed != SIZE) {
-      xSpeed = 0;
-      ySpeed = -SIZE;
+    if (currentKey == 'w') {
+      if (ySpeed != SIZE) {
+        xSpeed = 0;
+        ySpeed = -SIZE;
+      }
       keyCount--;
     }
-    if (currentKey == 's' && ySpeed != -SIZE) {
-      xSpeed = 0;
-      ySpeed = SIZE;
+    if (currentKey == 's') {
+      if (ySpeed != -SIZE) {
+        xSpeed = 0;
+        ySpeed = SIZE;
+      }
       keyCount--;
     }
-    if (currentKey == 'a' && xSpeed != SIZE) {
-      xSpeed = -SIZE;
-      ySpeed = 0;
+    if (currentKey == 'a') {
+      if (xSpeed != SIZE) {
+        xSpeed = -SIZE;
+        ySpeed = 0;
+      }
       keyCount--;
     }
-    if (currentKey == 'd' && xSpeed != -SIZE) {
-      xSpeed = SIZE;
-      ySpeed = 0;
+    if (currentKey == 'd') {
+      if (xSpeed != -SIZE) {
+        xSpeed = SIZE;
+        ySpeed = 0;
+      }
       keyCount--;
     }
   }

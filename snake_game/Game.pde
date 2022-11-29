@@ -7,7 +7,8 @@ class Game {
   
   // variables
   boolean isRunning = true;
-  char newKey;
+  boolean isPressEligible = true;
+  char currentKey;
   
   // constants
   final int SIZE = 30;
@@ -57,25 +58,29 @@ class Game {
   }
   
   void keyPressed() {
-    if (keyCode == UP || key == 'w') {
+    if ((key == 'w') && currentKey != 'w') {
       snake.keyStorage[snake.keyCount] = 'w';
       snake.keyCount++;
-      key = 'm';
+      currentKey = 'w';
+      print('w');
     }
-    if (keyCode == DOWN || key == 's') {
+    if ((key == 's') && currentKey != 's') {
       snake.keyStorage[snake.keyCount] = 's';
       snake.keyCount++;
-      key = 'm';
+      currentKey = 's';
+      print('s');
     }
-    if (keyCode == LEFT || key == 'a') {
+    if ((key == 'a') && currentKey != 'a') {
       snake.keyStorage[snake.keyCount] = 'a';
       snake.keyCount++;
-      key = 'm';
+      currentKey = 'a';
+      print('a');
     }
-    if (keyCode == RIGHT || key == 'd') {
+    if ((key == 'd') && currentKey != 'd') {
       snake.keyStorage[snake.keyCount] = 'd';
       snake.keyCount++;
-      key = 'm';
+      currentKey = 'd';
+      print('d');
     }
   }
 }
