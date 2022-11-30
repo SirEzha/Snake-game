@@ -23,7 +23,7 @@ class Game {
   
   void frame() {
     background(0);
-    keyPressed();
+    //keyPressed();
     snake.frame();
     drawScoreBackground();
     food.frame();

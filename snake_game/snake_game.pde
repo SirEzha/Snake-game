@@ -1,7 +1,8 @@
 /* 
 TODO list:
 
-1. fix the queue part, rn it is working unexpectedly
+1. change the queue array to linked list in snake class
+2. move the keyPressed methods to the main class from other classes
 .. the work on functional part is over, now to code style and optimisation
 2. extend the game window to allow for score and highscore place on top of the window
 4. Move the gameover code chunk in main to a separate function
@@ -39,5 +40,12 @@ void gameoverFrame() {
     game = new Game();
     game.score.highscoreValue = gameover.highscoreValue;
     gameover = new GameoverScreen();
+  }
+}
+
+
+void keyPressed() {
+  if (key == 'i') {
+    println("asdfasdf");
   }
 }
