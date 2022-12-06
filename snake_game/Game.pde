@@ -8,7 +8,6 @@ class Game {
   // variables
   boolean isRunning = true;
   boolean isPressEligible = true;
-  char currentKey;
   
   // constants
   final int SIZE = 30;
@@ -23,7 +22,6 @@ class Game {
   
   void frame() {
     background(0);
-    //keyPressed();
     snake.frame();
     drawScoreBackground();
     food.frame();
@@ -42,10 +40,12 @@ class Game {
   }
   
   boolean isSnakeOnFood() {
+    boolean returnValue = false;
+    
     if (snake.snakeArray.get(0)[0] == food.xPos && snake.snakeArray.get(0)[1] == food.yPos) {
-      return true;
+      returnValue = true;
     }
-    return false;
+    return returnValue;
   }
   
   void drawScoreBackground() {

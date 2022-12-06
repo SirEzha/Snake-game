@@ -7,6 +7,12 @@ class Food {
   //quasiconstants
   int SIZE;
   
+  void frame() {
+    fill(#FF2727);
+    square(xPos, yPos, SIZE);
+    fill(#FFFFFF);
+  }
+  
   void reappear(ArrayList<int[]> snakeArray) {
     spawnNewFood();
     for (int i = 0; i < snakeArray.size(); ++i) {
@@ -14,12 +20,6 @@ class Food {
         reappear(snakeArray);
       }
     }
-  }
-  
-  void frame() {
-    fill(#FF2727);
-    square(xPos, yPos, SIZE);
-    fill(#FFFFFF);
   }
   
   void spawnNewFood() {

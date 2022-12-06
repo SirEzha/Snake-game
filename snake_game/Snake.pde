@@ -27,7 +27,6 @@ class Snake {
   void frame() {
     // limiting the effective snake framerate to 60/7 ~ 9fps //<>//
     if (frameCount % 7 == 0) {
-      //println(keyStorage);
       turnSnake();
       moveSnake();
     }
@@ -89,18 +88,22 @@ class Snake {
   }
   
   boolean isSelfCollided() {
+    boolean returnValue = false;
+    
     for (int i = 1; i < snakeArray.size() - 1; ++i) {
       if (snakeArray.get(0)[0] == snakeArray.get(i)[0] && snakeArray.get(0)[1] == snakeArray.get(i)[1]) {
-        return true;
+        returnValue = true;
       }
     }
-    return false;
+    return returnValue;
   }
   
   boolean isWallCollided() {
+    boolean returnValue = false;
+    
     if (snakeArray.get(0)[0] < 0 || snakeArray.get(0)[0] > 479 || snakeArray.get(0)[1] < 60 || snakeArray.get(0)[1] > 479) {
-      return true; 
+      returnValue = true; 
     }
-    return false;
+    return returnValue;
   }
 }
