@@ -45,7 +45,28 @@ void gameoverFrame() {
 
 
 void keyPressed() {
-  if (key == 'i') {
-    println("asdfasdf");
+    if ((key == 'w') && game.currentKey != 'w') {
+      game.snake.keyStorage[game.snake.keyCount] = 'w';
+      game.snake.keyCount++;
+      game.currentKey = 'w';
+      print('w');
+    }
+    if ((key == 's') && game.currentKey != 's') {
+      game.snake.keyStorage[game.snake.keyCount] = 's';
+      game.snake.keyCount++;
+      game.currentKey = 's';
+      print('s');
+    }
+    if ((key == 'a') && game.currentKey != 'a') {
+      game.snake.keyStorage[game.snake.keyCount] = 'a';
+      game.snake.keyCount++;
+      game.currentKey = 'a';
+      print('a');
+    }
+    if ((key == 'd') && game.currentKey != 'd') {
+      game.snake.keyStorage[game.snake.keyCount] = 'd';
+      game.snake.keyCount++;
+      game.currentKey = 'd';
+      print('d');
+    }
   }
-}

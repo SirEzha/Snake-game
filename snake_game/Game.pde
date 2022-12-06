@@ -56,31 +56,4 @@ class Game {
   void loseGame() {
     isRunning = false;
   }
-  
-  void keyPressed() {
-    if ((key == 'w') && currentKey != 'w') {
-      snake.keyStorage[snake.keyCount] = 'w';
-      snake.keyCount++;
-      currentKey = 'w';
-      print('w');
-    }
-    if ((key == 's') && currentKey != 's') {
-      snake.keyStorage[snake.keyCount] = 's';
-      snake.keyCount++;
-      currentKey = 's';
-      print('s');
-    }
-    if ((key == 'a') && currentKey != 'a') {
-      snake.keyStorage[snake.keyCount] = 'a';
-      snake.keyCount++;
-      currentKey = 'a';
-      print('a');
-    }
-    if ((key == 'd') && currentKey != 'd') {
-      snake.keyStorage[snake.keyCount] = 'd';
-      snake.keyCount++;
-      currentKey = 'd';
-      print('d');
-    }
-  }
 }
