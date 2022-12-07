@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-//import java.lang.System.arraycopy;
+import java.util.*;
+import java.lang.Character;
 
 class Snake {
   
@@ -7,7 +7,7 @@ class Snake {
   int xSpeed = 30;
   int ySpeed = 0;
   ArrayList<int[]> snakeArray = new ArrayList<int[]>();
-  char[] keyStorage = new char[5];
+  LinkedList<Character> keyStorage = new LinkedList<Character>();
   char currentKey; // the movement key that will be executed this frame
   int keyCount = 0; // amount of keys queued
   
@@ -15,7 +15,7 @@ class Snake {
   int SIZE;
   
   Snake() {
-    // initial snake
+    // initial snake coordinates
     int[] pos1 = {30, 60};
     int[] pos2 = {60, 60};
     int[] pos3 = {90, 60};
@@ -24,8 +24,26 @@ class Snake {
     snakeArray.add(pos3);
   }
   
+  // getters and setters
+  ArrayList<int[]> getSnakeArray() { //<>//
+    return snakeArray;
+  }
+  
+  void addKeyToStorage(char keyToAdd) {
+    keyStorage.addLast(keyToAdd); 
+  }
+  
+  char getKeyFromStorage() {
+    char firstElement = 'o';
+    if (keyStorage.peekFirst() != null) {
+      firstElement = keyStorage.removeFirst(); // not only gets the movement button but also removes it afterwards
+    }
+    return firstElement;
+  }
+  
+  // methods
   void frame() {
-    // limiting the effective snake framerate to 60/7 ~ 9fps //<>//
+    // limiting the effective snake framerate to 60/7 ~ 9fps
     if (frameCount % 7 == 0) {
       turnSnake();
       moveSnake();
@@ -37,9 +55,8 @@ class Snake {
   }
   
   void turnSnake() {
-    // working with array
-    currentKey = keyStorage[0];
-    arrayCopy(keyStorage, 1, keyStorage, 0, keyStorage.length-1);
+    // getting the current 'move' value
+    currentKey = getKeyFromStorage();
     
     // turning the snake
     if (currentKey == 'w') {
@@ -47,28 +64,24 @@ class Snake {
         xSpeed = 0;
         ySpeed = -SIZE;
       }
-      keyCount--;
     }
     if (currentKey == 's') {
       if (ySpeed != -SIZE) {
         xSpeed = 0;
         ySpeed = SIZE;
       }
-      keyCount--;
     }
     if (currentKey == 'a') {
       if (xSpeed != SIZE) {
         xSpeed = -SIZE;
         ySpeed = 0;
       }
-      keyCount--;
     }
     if (currentKey == 'd') {
       if (xSpeed != -SIZE) {
         xSpeed = SIZE;
         ySpeed = 0;
       }
-      keyCount--;
     }
   }
   
@@ -88,8 +101,7 @@ class Snake {
   }
   
   boolean isSelfCollided() {
-    boolean returnValue = false;
-    
+    boolean returnValue = false;    
     for (int i = 1; i < snakeArray.size() - 1; ++i) {
       if (snakeArray.get(0)[0] == snakeArray.get(i)[0] && snakeArray.get(0)[1] == snakeArray.get(i)[1]) {
         returnValue = true;
@@ -99,8 +111,7 @@ class Snake {
   }
   
   boolean isWallCollided() {
-    boolean returnValue = false;
-    
+    boolean returnValue = false;    
     if (snakeArray.get(0)[0] < 0 || snakeArray.get(0)[0] > 479 || snakeArray.get(0)[1] < 60 || snakeArray.get(0)[1] > 479) {
       returnValue = true; 
     }

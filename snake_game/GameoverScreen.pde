@@ -5,6 +5,28 @@ class GameoverScreen {
   int scoreValue = 0;
   int highscoreValue = 0;
   
+  // getters and setters
+  void setScore(int currentValue) {
+    scoreValue = currentValue;
+  }
+  
+  int getScore() {
+    return scoreValue; 
+  }
+  
+  void setHighscore(int currentValue) {
+    highscoreValue = currentValue;
+  }
+  
+  int getHighscore() {
+    return highscoreValue; 
+  }
+  
+  boolean getGameoverState() {
+    return isGameover;
+  }
+  
+  // methods
   void frame() {
     keyPressed();
     background(150);
@@ -15,7 +37,7 @@ class GameoverScreen {
   void keyPressed() {
     if (key == 'r' || key == 'R') {
       isGameover = false;
-      // overwrite the variable because it is not automatically reset
+      // overwrite the variable because it does not automatically reset
       key = 'p';
     }
   }

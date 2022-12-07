@@ -2,6 +2,8 @@
 TODO list:
 
 1. change the queue array to linked list in snake class
+2. introduce the encapsulation for the classes
+3. how to handle nested variable calls?
 .. the work on functional part is over, now to code style and optimisation
 
 Snake game. Should I say more?
@@ -26,35 +28,34 @@ void draw() {
   }
 }
 
+
+// change all to getters
 void gameoverFrame() {
   if (game.score.scoreValue > game.score.highscoreValue) {
     game.score.highscoreValue = game.score.scoreValue;
   }
-  gameover.scoreValue = game.score.scoreValue;
-  gameover.highscoreValue = game.score.highscoreValue;
+  gameover.setScore(game.score.scoreValue);
+  gameover.setHighscore(game.score.highscoreValue);
   gameover.frame();
-  if (!gameover.isGameover) {
+  if (!gameover.getGameoverState()) {
     game = new Game();
-    game.score.highscoreValue = gameover.highscoreValue;
+    game.score.highscoreValue = gameover.getHighscore();
     gameover = new GameoverScreen();
   }
 }
 
+// change all to getters
 void keyPressed() {
-    if ((key == 'w')) {
-      game.snake.keyStorage[game.snake.keyCount] = 'w';
-      game.snake.keyCount++;
+    if (key == 'w') {
+      game.snake.addKeyToStorage('w');
     }
-    if ((key == 's')) {
-      game.snake.keyStorage[game.snake.keyCount] = 's';
-      game.snake.keyCount++;
+    if (key == 's') {
+      game.snake.addKeyToStorage('s');
     }
-    if ((key == 'a')) {
-      game.snake.keyStorage[game.snake.keyCount] = 'a';
-      game.snake.keyCount++;
+    if (key == 'a') {
+      game.snake.addKeyToStorage('a');
     }
     if (key == 'd') {
-      game.snake.keyStorage[game.snake.keyCount] = 'd';
-      game.snake.keyCount++;
+      game.snake.addKeyToStorage('d');
     }
   }
