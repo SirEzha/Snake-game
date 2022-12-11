@@ -23,8 +23,8 @@ class Food {
   }
   
   void spawnNewFood() {
-    int xNewPos = ceil(random(479));
-    int yNewPos = ceil(random(60, 479));
+    int xNewPos = ceil(random(height-1));
+    int yNewPos = ceil(random(60, height-1));
     
     // pushes the food particles into a grid
     xPos = xNewPos - xNewPos % SIZE;

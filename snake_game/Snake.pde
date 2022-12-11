@@ -10,6 +10,7 @@ class Snake {
   LinkedList<Character> keyStorage = new LinkedList<Character>();
   char currentKey; // the movement key that will be executed this frame
   int keyCount = 0; // amount of keys queued
+  char tailDirection;
   
   // quasiconstants
   int SIZE;
@@ -25,7 +26,7 @@ class Snake {
   }
   
   
-  // getters and setters
+  // getters and setters //<>//
   ArrayList<int[]> getSnakeArray() { //<>//
     return snakeArray;
   }
@@ -51,6 +52,7 @@ class Snake {
       moveSnake();
     }
     drawSnake();
+    tailDirection = directionTailMovement();
   }
   
   void drawSnake() {
@@ -59,7 +61,12 @@ class Snake {
         square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
         drawEyes();
       } else {
-        square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+        if (i != snakeArray.size()-1) {
+          square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+        } else {
+          //square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+          drawTail(snakeArray.size()-1);
+        }
       }
       fill(255);
     }
@@ -81,6 +88,31 @@ class Snake {
         } else {
           square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
           square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
+        }
+      }
+    }
+    fill(255);
+  }
+  
+  void drawTail(int tailNumber) {
+    if (tailDirection == 'w') {
+      triangle(snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1], 
+                snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1],
+                  snakeArray.get(tailNumber)[0]+SIZE/2, snakeArray.get(tailNumber)[1]+SIZE);
+    } else {
+      if (tailDirection == 's') {
+        triangle(snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1]+SIZE, 
+                  snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1]+SIZE,
+                    snakeArray.get(tailNumber)[0]+SIZE/2, snakeArray.get(tailNumber)[1]);
+      } else {
+        if (tailDirection == 'd') {
+          triangle(snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1], 
+                    snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1]+SIZE,
+                      snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1]+SIZE/2);
+        } else {
+          triangle(snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1], 
+                    snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1]+SIZE,
+                      snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1]+SIZE/2);
         }
       }
     }
@@ -129,8 +161,22 @@ class Snake {
   }
   
   void eat() {
-    int[] newPart = {snakeArray.get(0)[0] + speedX, snakeArray.get(0)[1] + speedY};
-    snakeArray.add(newPart);
+    int tailSpeedX = 0;
+    int tailSpeedY = 0;
+    if (tailDirection == 'w') {
+      tailSpeedX = -SIZE;
+    }
+    if (tailDirection == 's') {
+      tailSpeedX = SIZE;
+    }
+    if (tailDirection == 'd') {
+      tailSpeedY = SIZE;
+    }
+    if (tailDirection == 'a') {
+      tailSpeedY = -SIZE;
+    }
+    int[] newPart = {snakeArray.get(snakeArray.size()-1)[0] - tailSpeedX, snakeArray.get(snakeArray.size()-1)[1] - tailSpeedY};
+    snakeArray.add(snakeArray.size(), newPart);
   }
   
   boolean isSelfCollided() {
@@ -145,9 +191,29 @@ class Snake {
   
   boolean isWallCollided() {
     boolean returnValue = false;    
-    if (snakeArray.get(0)[0] < 0 || snakeArray.get(0)[0] > 479 || snakeArray.get(0)[1] < 60 || snakeArray.get(0)[1] > 479) {
+    if (snakeArray.get(0)[0] < 0 || snakeArray.get(0)[0] > height-1 || snakeArray.get(0)[1] < 60 || snakeArray.get(0)[1] > height-1) {
       returnValue = true; 
     }
     return returnValue;
+  }
+  
+  char directionTailMovement() {
+    char direction = 'i';
+    if (snakeArray.get(snakeArray.size()-1)[1] - snakeArray.get(snakeArray.size()-2)[1] >= SIZE) {
+      direction = 'w'; 
+    } else {
+      if (snakeArray.get(snakeArray.size()-1)[1] - snakeArray.get(snakeArray.size()-2)[1] <= -SIZE) {
+        direction = 's'; 
+      } else {
+        if (snakeArray.get(snakeArray.size()-1)[0] - snakeArray.get(snakeArray.size()-2)[0] <= -SIZE) {
+          direction = 'd';
+        } else {
+          if (snakeArray.get(snakeArray.size()-1)[0] - snakeArray.get(snakeArray.size()-2)[0] >= SIZE) {
+            direction = 'a';
+          }
+        }
+      }
+    }
+    return direction;
   }
 }

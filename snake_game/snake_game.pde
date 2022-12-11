@@ -1,7 +1,6 @@
 /* 
 TODO list:
-
-.. the work on functional part is over, now to code style and optimisation
+1. fix the way how tail appears
 
 Snake game. Should I say more?
 */
