@@ -4,8 +4,8 @@ import java.lang.Character;
 class Snake {
   
   // variables
-  int xSpeed = 30;
-  int ySpeed = 0;
+  int speedX = 30;
+  int speedY = 0;
   ArrayList<int[]> snakeArray = new ArrayList<int[]>();
   LinkedList<Character> keyStorage = new LinkedList<Character>();
   char currentKey; // the movement key that will be executed this frame
@@ -24,6 +24,7 @@ class Snake {
     snakeArray.add(pos3);
   }
   
+  
   // getters and setters
   ArrayList<int[]> getSnakeArray() { //<>//
     return snakeArray;
@@ -41,6 +42,7 @@ class Snake {
     return firstElement;
   }
   
+  
   // methods
   void frame() {
     // limiting the effective snake framerate to 60/7 ~ 9fps
@@ -48,10 +50,41 @@ class Snake {
       turnSnake();
       moveSnake();
     }
-    
+    drawSnake();
+  }
+  
+  void drawSnake() {
     for (int i = 0; i < snakeArray.size(); ++i) {
-      square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+      if (i == 0) {
+        square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+        drawEyes();
+      } else {
+        square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
+      }
+      fill(255);
     }
+  }
+  
+  void drawEyes() {
+    fill(0);
+    if (speedX == 0 && speedY == -SIZE) {
+      square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
+      square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
+    } else {
+      if (speedX == 0 && speedY == SIZE) {
+        square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
+        square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
+      } else {
+        if (speedX == SIZE && speedY == 0) {
+          square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
+          square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
+        } else {
+          square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
+          square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
+        }
+      }
+    }
+    fill(255);
   }
   
   void turnSnake() {
@@ -60,27 +93,27 @@ class Snake {
     
     // turning the snake
     if (currentKey == 'w') {
-      if (ySpeed != SIZE) {
-        xSpeed = 0;
-        ySpeed = -SIZE;
+      if (speedY != SIZE) {
+        speedX = 0;
+        speedY = -SIZE;
       }
     }
     if (currentKey == 's') {
-      if (ySpeed != -SIZE) {
-        xSpeed = 0;
-        ySpeed = SIZE;
+      if (speedY != -SIZE) {
+        speedX = 0;
+        speedY = SIZE;
       }
     }
     if (currentKey == 'a') {
-      if (xSpeed != SIZE) {
-        xSpeed = -SIZE;
-        ySpeed = 0;
+      if (speedX != SIZE) {
+        speedX = -SIZE;
+        speedY = 0;
       }
     }
     if (currentKey == 'd') {
-      if (xSpeed != -SIZE) {
-        xSpeed = SIZE;
-        ySpeed = 0;
+      if (speedX != -SIZE) {
+        speedX = SIZE;
+        speedY = 0;
       }
     }
   }
@@ -91,12 +124,12 @@ class Snake {
       snakeArray.set(i, snakeArray.get(i-1));
     }
     // move the head
-    int[] updatedPos = {snakeArray.get(0)[0] + xSpeed, snakeArray.get(0)[1] + ySpeed};
+    int[] updatedPos = {snakeArray.get(0)[0] + speedX, snakeArray.get(0)[1] + speedY};
     snakeArray.set(0, updatedPos);
   }
   
   void eat() {
-    int[] newPart = {snakeArray.get(0)[0] + xSpeed, snakeArray.get(0)[1] + ySpeed};
+    int[] newPart = {snakeArray.get(0)[0] + speedX, snakeArray.get(0)[1] + speedY};
     snakeArray.add(newPart);
   }
   

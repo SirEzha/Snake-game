@@ -1,9 +1,6 @@
 /* 
 TODO list:
 
-1. change the queue array to linked list in snake class
-2. introduce the encapsulation for the classes
-3. how to handle nested variable calls?
 .. the work on functional part is over, now to code style and optimisation
 
 Snake game. Should I say more?
