@@ -7,22 +7,23 @@ class Food {
   //quasiconstants
   int SIZE;
   
+  
   void frame() {
     fill(#FF2727);
     square(xPos, yPos, SIZE);
     fill(#FFFFFF);
   }
   
-  void reappear(ArrayList<int[]> snakeArray) {
-    spawnNewFood();
+  void spawnFoodCheck(ArrayList<int[]> snakeArray) {
+    spawnFood();
     for (int i = 0; i < snakeArray.size(); ++i) {
       if (snakeArray.get(i)[0] == xPos && snakeArray.get(i)[1] == yPos) {
-        reappear(snakeArray);
+        spawnFoodCheck(snakeArray);
       }
     }
   }
   
-  void spawnNewFood() {
+  void spawnFood() {
     int xNewPos = ceil(random(height-1));
     int yNewPos = ceil(random(60, height-1));
     

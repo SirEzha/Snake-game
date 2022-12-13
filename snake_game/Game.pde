@@ -28,7 +28,7 @@ class Game {
     score.frame();
     if (isSnakeOnFood() == true) {
       snake.eat();
-      food.reappear(snake.getSnakeArray());
+      food.spawnFoodCheck(snake.getSnakeArray());
       score.scoreValue++;
     }
     if (snake.isSelfCollided()) {
