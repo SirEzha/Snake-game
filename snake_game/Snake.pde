@@ -26,8 +26,8 @@ class Snake {
   }
   
   
-  // getters and setters //<>//
-  ArrayList<int[]> getSnakeArray() { //<>//
+  // getters and setters //<>// //<>//
+  ArrayList<int[]> getSnakeArray() { //<>// //<>//
     return snakeArray;
   }
   
