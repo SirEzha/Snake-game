@@ -60,8 +60,7 @@ class Snake {
       if (i == 0) {
         square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
         drawEyes();
-      } else {
-        if (i != snakeArray.size()-1) {
+      } else if (i != snakeArray.size()-1) {
           square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
         } else {
           //square(snakeArray.get(i)[0], snakeArray.get(i)[1], SIZE);
@@ -70,27 +69,22 @@ class Snake {
       }
       fill(255);
     }
-  }
   
   void drawEyes() {
     fill(0);
     if (speedX == 0 && speedY == -SIZE) {
       square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
       square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
-    } else {
-      if (speedX == 0 && speedY == SIZE) {
+    } else if (speedX == 0 && speedY == SIZE) {
         square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
         square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
-      } else {
-        if (speedX == SIZE && speedY == 0) {
+      } else if (speedX == SIZE && speedY == 0) {
           square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
           square(snakeArray.get(0)[0] + 2*SIZE/3, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
         } else {
           square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + SIZE/6, SIZE/6);
           square(snakeArray.get(0)[0] + SIZE/6, snakeArray.get(0)[1] + 2*SIZE/3, SIZE/6);
         }
-      }
-    }
     fill(255);
   }
   
@@ -99,13 +93,11 @@ class Snake {
       triangle(snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1], 
                 snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1],
                   snakeArray.get(tailNumber)[0]+SIZE/2, snakeArray.get(tailNumber)[1]+SIZE);
-    } else {
-      if (tailDirection == 's') {
+    } else if (tailDirection == 's') {
         triangle(snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1]+SIZE, 
                   snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1]+SIZE,
                     snakeArray.get(tailNumber)[0]+SIZE/2, snakeArray.get(tailNumber)[1]);
-      } else {
-        if (tailDirection == 'd') {
+      } else if (tailDirection == 'd') {
           triangle(snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1], 
                     snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1]+SIZE,
                       snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1]+SIZE/2);
@@ -114,8 +106,6 @@ class Snake {
                     snakeArray.get(tailNumber)[0], snakeArray.get(tailNumber)[1]+SIZE,
                       snakeArray.get(tailNumber)[0]+SIZE, snakeArray.get(tailNumber)[1]+SIZE/2);
         }
-      }
-    }
     fill(255);
   }
   
