@@ -17,17 +17,17 @@ class Snake {
   
   Snake() {
     // initial snake coordinates
-    int[] pos1 = {30, 60};
+    int[] pos3 = {30, 60};
     int[] pos2 = {60, 60};
-    int[] pos3 = {90, 60};
+    int[] pos1 = {90, 60};
     snakeArray.add(pos1);
     snakeArray.add(pos2);
     snakeArray.add(pos3);
   }
   
   
-  // getters and setters //<>// //<>//
-  ArrayList<int[]> getSnakeArray() { //<>// //<>//
+  // getters and setters //<>//
+  ArrayList<int[]> getSnakeArray() { //<>//
     return snakeArray;
   }
   
@@ -154,16 +154,16 @@ class Snake {
     int tailSpeedX = 0;
     int tailSpeedY = 0;
     if (tailDirection == 'w') {
-      tailSpeedX = -SIZE;
+      tailSpeedY = -SIZE;
     }
     if (tailDirection == 's') {
-      tailSpeedX = SIZE;
-    }
-    if (tailDirection == 'd') {
       tailSpeedY = SIZE;
     }
+    if (tailDirection == 'd') {
+      tailSpeedX = SIZE;
+    }
     if (tailDirection == 'a') {
-      tailSpeedY = -SIZE;
+      tailSpeedX = -SIZE;
     }
     int[] newPart = {snakeArray.get(snakeArray.size()-1)[0] - tailSpeedX, snakeArray.get(snakeArray.size()-1)[1] - tailSpeedY};
     snakeArray.add(snakeArray.size(), newPart);

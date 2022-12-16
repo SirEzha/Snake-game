@@ -1,6 +1,5 @@
 /* 
 TODO list:
-1. fix the way how tail appears
 2. somehow make snake class smaller?
 
 Snake game. Should I say more?

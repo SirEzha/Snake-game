@@ -1,8 +1,8 @@
 class Food {
   
   // variables
-  int xPos = 240;
-  int yPos = 240;
+  int xPos = 150;
+  int yPos = 60;
   
   //quasiconstants
   int SIZE;
