@@ -7,7 +7,6 @@ class Game {
   
   // variables
   boolean isRunning = true;
-  boolean isPressEligible = true;
   
   // constants
   final int SIZE = 30;
@@ -20,8 +19,9 @@ class Game {
     food.SIZE = SIZE;
   }
   
+  // methods
   void frame() {
-    background(0);
+    background(#169806);
     snake.frame();
     drawScoreBackground();
     food.frame();
@@ -55,5 +55,9 @@ class Game {
   
   void loseGame() {
     isRunning = false;
+  }
+  
+  void newFoodSetup() {
+    food.spawnFoodCheck(snake.getSnakeArray());
   }
 }
