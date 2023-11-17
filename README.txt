@@ -1,7 +1,7 @@
-Classic version of the Snake game done in processing
+Classic version of 'Snake' done in processing / java
 
 Controls:
 * wasd - movement
 * r - restart the game during gameover screen
 
-Feel free to use if you want to for whatever reason lol
+Feel free to use
